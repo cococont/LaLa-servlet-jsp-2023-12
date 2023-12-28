@@ -11,6 +11,12 @@ public class GameLogic {
 		int com = new Random().nextInt(3); 
 		hands.setCom(com);
 	}
+	
+	public void stringHand(Hands hands) {
+		String[] handslist = {"グー", "チョキ", "パー"};
+		hands.setUserHand(handslist[hands.getUser()]);
+		hands.setComHand(handslist[hands.getCom()]);
+	}
 
 	public void gameResult(Hands hands) {
 		int user = hands.getUser();

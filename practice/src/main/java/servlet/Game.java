@@ -2,7 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
-import javax.servlet.ServletContext;
+//import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,15 +23,22 @@ public class Game extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext application = this.getServletContext();
+//		ServletContext application = this.getServletContext();
 		Hands hands = new Hands();
 		GameLogic gameLogic = new GameLogic();
-//		System.out.println(request.getParameter("user"));
-		int user = Integer.parseInt(request.getParameter("user"));
-		hands.setUser(user);
-		gameLogic.createComHand(hands);
-		gameLogic.gameResult(hands);
-		application.setAttribute("hands", hands);
+		
+		if (request.getParameter("user") != null) {
+//			System.out.println(request.getParameter("user"));
+			int user = Integer.parseInt(request.getParameter("user"));
+			hands.setUser(user);
+			gameLogic.createComHand(hands);
+			gameLogic.gameResult(hands);
+			gameLogic.stringHand(hands);
+//			application.setAttribute("hands", hands);
+		} else {
+			hands.setResult("結果が不正です");
+		}
+		request.setAttribute("hands", hands);
 		
 		String url = "WEB-INF/jsp/game.jsp";
 		request.getRequestDispatcher(url).forward(request, response);

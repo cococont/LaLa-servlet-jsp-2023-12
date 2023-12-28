@@ -2,7 +2,9 @@ package model;
 
 public class Hands {
 	private int user;
+	private String userHand;
 	private int com;
+	private String comHand;
 	private String result;
 	
 	public Hands() {}
@@ -29,6 +31,22 @@ public class Hands {
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+
+	public String getUserHand() {
+		return userHand;
+	}
+
+	public void setUserHand(String userHand) {
+		this.userHand = userHand;
+	}
+
+	public String getComHand() {
+		return comHand;
+	}
+
+	public void setComHand(String comHand) {
+		this.comHand = comHand;
 	}
 	
 
